@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오시는 길 & 예약 | 온마루아동가족상담센터</title>
+  <meta name="description" content="온마루아동가족상담센터 위치 및 100% 비밀보장 예약 안내. 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
+        <div class="logo-text">
+          <span class="brand-name">온마루</span>
+          <span class="brand-sub">아동가족상담센터</span>
+        </div>
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">홈</a>
+        <a href="about.html" class="nav-link">센터 소개</a>
+        <a href="programs.html" class="nav-link">상담 프로그램</a>
+        <a href="counselors.html" class="nav-link">전문가 소개</a>
+        <a href="mindcheck.html" class="nav-link highlight-link">🌱 셀프 마음체크</a>
+        <a href="location.html" class="nav-link active">오시는 길 & 예약</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" onclick="location.href='mindcheck.html'">
+          <i class="fa-solid fa-heart-pulse"></i> 자가진단
+        </button>
+        <button class="btn btn-primary" onclick="openReservationModal()">
+          <i class="fa-regular fa-calendar-check"></i> 간편 예약 문의
+        </button>
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub Header Banner -->
+  <section class="sub-banner">
+    <div class="container text-center">
+      <span class="section-sub">LOCATION & RESERVATION</span>
+      <h1 class="page-title">오시는 길 및 예약 안내</h1>
+      <p class="page-desc">타인의 접촉 없이 방문 가능한 프라이빗 아동가족상담 공간</p>
+    </div>
+  </section>
+
+  <!-- Location & Form Section -->
+  <section class="location-section">
+    <div class="container">
+      <div class="location-card grid-2 glass-card mb-5">
+        <div class="location-info">
+          <span class="section-sub">VISIT US</span>
+          <h2>온마루 오시는 길</h2>
+          <p class="loc-desc">부산 명지국제신도시 내, 조용하고 편안한 공간에 위치해 있습니다.</p>
+          
+          <ul class="contact-details">
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>센터 주소</strong>
+                <span>부산시 강서구 명지국제2로 28번길 3 동건프라자 802호</span>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <strong>대표 전화</strong>
+                <span>02-588-7588 (전화 상담 및 예약 가능)</span>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-clock"></i>
+              <div>
+                <strong>운영 시간</strong>
+                <span>월~금: 10:00 - 21:00 (야간 상담제 운영)</span><br>
+                <span>토요일: 10:00 - 18:00 (일요일 및 공휴일 휴무)</span>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-square-parking"></i>
+              <div>
+                <strong>주차 지원</strong>
+                <span>건물 지하 주차장 2시간 무료 지원</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="loc-buttons">
+            <button class="btn btn-primary" onclick="copyAddress()">
+              <i class="fa-regular fa-copy"></i> 주소 복사하기
+            </button>
+            <a href="tel:025887588" class="btn btn-outline">
+              <i class="fa-solid fa-phone-flip"></i> 전화 연결하기
+            </a>
+          </div>
+        </div>
+
+        <div class="location-map">
+          <div class="map-placeholder">
+            <i class="fa-solid fa-map-location-dot map-icon"></i>
+            <h3>부산 강서구 명지국제신도시</h3>
+            <p>명지국제2로 28번길 3 동건프라자 802호</p>
+            <div class="map-badge">
+              <i class="fa-solid fa-shield-cat"></i> 프라이빗 전용 대기실 완비
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Online Direct Booking Form -->
+      <div class="quiz-card glass-card" style="margin-top: 40px;">
+        <div class="text-center mb-4">
+          <span class="badge-trust"><i class="fa-solid fa-lock"></i> 100% 비밀보장</span>
+          <h2>온라인 간편 예약 신청</h2>
+          <p class="text-muted">상담 내용을 비밀로 보장하며, 담당자가 확인 후 안내 연락을 드립니다.</p>
+        </div>
+
+        <form onsubmit="handleReserveSubmit(event)">
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="pageClientName">성함 (또는 보호자 성함)</label>
+              <input type="text" id="pageClientName" placeholder="예: 김OO / 민준이 엄마" required>
+            </div>
+
+            <div class="form-group">
+              <label for="pageClientPhone">연락처</label>
+              <input type="tel" id="pageClientPhone" placeholder="010-0000-0000" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pageProgSelect">희망 상담 프로그램</label>
+            <select id="pageProgSelect" required>
+              <option value="아동·청소년 놀이 & 미술 치료">아동·청소년 놀이 & 미술 치료</option>
+              <option value="부부 & 커플/가족 상담">부부 & 커플/가족 상담</option>
+              <option value="부모 양육 코칭">부모 양육 코칭</option>
+              <option value="성인 1:1 개별 상담">성인 1:1 개별 상담</option>
+              <option value="성격 및 기질 검사 (TCI)">성격 및 기질 검사 (TCI)</option>
+              <option value="기타 및 미정">기타 및 미정 (상담 후 결정)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pageClientMsg">문의사항 (자녀 나이 또는 고민 내용)</label>
+            <textarea id="pageClientMsg" rows="3" placeholder="예: 7세 아이의 분리불안 및 또래 관계 상담 문의합니다."></textarea>
+          </div>
+
+          <div class="form-privacy">
+            <input type="checkbox" id="pagePrivacyAgree" required checked>
+            <label for="pagePrivacyAgree">개인정보 수집 및 이용 동의 (상담 예약 연락 목적으로만 사용됩니다)</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="fa-solid fa-paper-plane"></i> 100% 비밀보장 예약 문의 제출
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
+          <span class="brand-name">온마루아동가족상담센터</span>
+        </div>
+        <p>상호명: 온마루아동가족상담센터 | 대표자: 김서연 | 사업자등록번호: 124-82-90123</p>
+        <p>주소: 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호 | 전화: 02-588-7588</p>
+        <p class="copyright">© 2026 온마루아동가족상담센터 All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reservation Modal -->
+  <div class="modal-backdrop" id="reserveModal">
+    <div class="modal-box glass-card">
+      <button class="modal-close" onclick="closeReservationModal()">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge"><i class="fa-solid fa-lock"></i> 100% 비밀보장 안심 예약</span>
+        <h2>온마루 상담 예약 문의</h2>
+        <p>연락처와 간단한 내용만 남겨주시면 친절히 안내해 드립니다.</p>
+      </div>
+
+      <form id="reserveForm" onsubmit="handleReserveSubmit(event)">
+        <div class="form-group">
+          <label for="clientName">성함 (또는 보호자 성함)</label>
+          <input type="text" id="clientName" placeholder="예: 김OO / 민준이 엄마" required>
+        </div>
+
+        <div class="form-group">
+          <label for="clientPhone">연락처</label>
+          <input type="tel" id="clientPhone" placeholder="010-0000-0000" required>
+        </div>
+
+        <div class="form-group">
+          <label for="progSelect">희망 상담 프로그램</label>
+          <select id="progSelect" required>
+            <option value="아동·청소년 놀이 & 미술 치료">아동·청소년 놀이 & 미술 치료</option>
+            <option value="부부 & 커플/가족 상담">부부 & 커플/가족 상담</option>
+            <option value="부모 양육 코칭">부모 양육 코칭</option>
+            <option value="성인 1:1 개별 상담">성인 1:1 개별 상담</option>
+            <option value="성격 및 기질 검사 (TCI)">성격 및 기질 검사 (TCI)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="clientMsg">문의사항</label>
+          <textarea id="clientMsg" rows="3" placeholder="편하게 남겨주세요."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">비밀보장 예약 신청하기</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><span id="toastMsg"></span></div>
+  <script src="script.js"></script>
+</body>
+</html>

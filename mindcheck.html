@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>셀프 마음체크 | 온마루아동가족상담센터</title>
+  <meta name="description" content="온마루 30초 셀프 마음체크. 자녀 고민, 부부 마찰, 양육 스트레스를 자가진단하고 맞춤 상담을 추천받으세요.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
+        <div class="logo-text">
+          <span class="brand-name">온마루</span>
+          <span class="brand-sub">아동가족상담센터</span>
+        </div>
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">홈</a>
+        <a href="about.html" class="nav-link">센터 소개</a>
+        <a href="programs.html" class="nav-link">상담 프로그램</a>
+        <a href="counselors.html" class="nav-link">전문가 소개</a>
+        <a href="mindcheck.html" class="nav-link active highlight-link">🌱 셀프 마음체크</a>
+        <a href="location.html" class="nav-link">오시는 길 & 예약</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" onclick="location.href='mindcheck.html'">
+          <i class="fa-solid fa-heart-pulse"></i> 자가진단
+        </button>
+        <button class="btn btn-primary" onclick="openReservationModal()">
+          <i class="fa-regular fa-calendar-check"></i> 간편 예약 문의
+        </button>
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub Header Banner -->
+  <section class="sub-banner">
+    <div class="container text-center">
+      <span class="section-sub">SELF MIND CHECK</span>
+      <h1 class="page-title">🌱 30초 셀프 마음체크</h1>
+      <p class="page-desc">현재 나 및 자녀, 가족의 마음 상태를 점검하고 맞춤형 솔루션을 확인해보세요</p>
+    </div>
+  </section>
+
+  <!-- Interactive Quiz Container -->
+  <section class="mind-check-section">
+    <div class="container">
+      <div class="quiz-card glass-card">
+        <div class="quiz-step" id="quizStep1">
+          <span class="quiz-step-num">Step 01 / 03</span>
+          <h2 class="quiz-question">요즘 가장 고민되거나 도움이 필요한 부분은 어디인가요?</h2>
+          <div class="quiz-options">
+            <button class="quiz-opt-btn" onclick="selectQuiz(1, 'child')">
+              <i class="fa-solid fa-child-reaching"></i>
+              <span>아이의 산만함, 떼쓰기, 친구 관계, 감정 표현이 걱정돼요</span>
+            </button>
+            <button class="quiz-opt-btn" onclick="selectQuiz(1, 'couple')">
+              <i class="fa-solid fa-people-roof"></i>
+              <span>배우자와의 대화 단절, 반복되는 말다툼과 갈등이 답답해요</span>
+            </button>
+            <button class="quiz-opt-btn" onclick="selectQuiz(1, 'coaching')">
+              <i class="fa-solid fa-hands-holding-child"></i>
+              <span>올바른 훈육법과 자녀 기질에 맞는 양육법을 알고 싶어요</span>
+            </button>
+            <button class="quiz-opt-btn" onclick="selectQuiz(1, 'adult')">
+              <i class="fa-solid fa-user"></i>
+              <span>나 자신의 우울, 불안, 직장 스트레스, 마음의 상처를 치유하고 싶어요</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-step hidden" id="quizStep2">
+          <span class="quiz-step-num">Step 02 / 03</span>
+          <h2 class="quiz-question">이 고민이나 증상이 지속된 기간은 어느 정도인가요?</h2>
+          <div class="quiz-options">
+            <button class="quiz-opt-btn" onclick="selectQuiz(2, 'recent')"> 최근 1개월 이내 갑자기 심해짐</button>
+            <button class="quiz-opt-btn" onclick="selectQuiz(2, 'months')"> 3개월 ~ 6개월 이상 지속됨</button>
+            <button class="quiz-opt-btn" onclick="selectQuiz(2, 'years')"> 오래전부터 반복되어온 오래된 고민임</button>
+          </div>
+        </div>
+
+        <div class="quiz-step hidden" id="quizStep3">
+          <span class="quiz-step-num">Step 03 / 03</span>
+          <h2 class="quiz-question">상담을 통해 어떤 도움을 받기를 희망하시나요?</h2>
+          <div class="quiz-options">
+            <button class="quiz-opt-btn" onclick="finishQuiz('play')"> 아이가 놀이/미술 치료로 감정을 자연스럽게 쏟아내길 바람</button>
+            <button class="quiz-opt-btn" onclick="finishQuiz('dialogue')"> 전문가의 중재를 통해 부부/가족이 서로의 진심을 나누길 바람</button>
+            <button class="quiz-opt-btn" onclick="finishQuiz('tci')"> TCI 기질 검사로 서로의 성격을 정확하게 진단받길 바람</button>
+          </div>
+        </div>
+
+        <!-- Quiz Result -->
+        <div class="quiz-result hidden" id="quizResult">
+          <div class="result-icon"><i class="fa-solid fa-heart-circle-check"></i></div>
+          <span class="result-badge">온마루 맞춤 추천</span>
+          <h2 class="result-title" id="resultTitle">아동·청소년 놀이 & 미술 치료</h2>
+          <p class="result-desc" id="resultDesc">
+            아이의 감정 반응과 양육 스트레스는 가족의 따뜻한 조력이 필요한 시점입니다. 온마루 1급 전문 상담사와 함께 마음을 풀어보세요.
+          </p>
+          <div class="result-actions">
+            <button class="btn btn-primary" onclick="openReservationModalWithProgram()">
+              <i class="fa-solid fa-calendar-check"></i> 추천 상담 비밀보장 예약하기
+            </button>
+            <button class="btn btn-outline" onclick="resetQuiz()">
+              <i class="fa-solid fa-rotate-left"></i> 다시 체크하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
+          <span class="brand-name">온마루아동가족상담센터</span>
+        </div>
+        <p>상호명: 온마루아동가족상담센터 | 대표자: 김서연 | 사업자등록번호: 124-82-90123</p>
+        <p>주소: 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호 | 전화: 02-588-7588</p>
+        <p class="copyright">© 2026 온마루아동가족상담센터 All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reservation Modal -->
+  <div class="modal-backdrop" id="reserveModal">
+    <div class="modal-box glass-card">
+      <button class="modal-close" onclick="closeReservationModal()">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge"><i class="fa-solid fa-lock"></i> 100% 비밀보장 안심 예약</span>
+        <h2>온마루 상담 예약 문의</h2>
+        <p>연락처와 간단한 내용만 남겨주시면 친절히 안내해 드립니다.</p>
+      </div>
+
+      <form id="reserveForm" onsubmit="handleReserveSubmit(event)">
+        <div class="form-group">
+          <label for="clientName">성함 (또는 보호자 성함)</label>
+          <input type="text" id="clientName" placeholder="예: 김OO / 민준이 엄마" required>
+        </div>
+
+        <div class="form-group">
+          <label for="clientPhone">연락처</label>
+          <input type="tel" id="clientPhone" placeholder="010-0000-0000" required>
+        </div>
+
+        <div class="form-group">
+          <label for="progSelect">희망 상담 프로그램</label>
+          <select id="progSelect" required>
+            <option value="아동·청소년 놀이 & 미술 치료">아동·청소년 놀이 & 미술 치료</option>
+            <option value="부부 & 커플/가족 상담">부부 & 커플/가족 상담</option>
+            <option value="부모 양육 코칭">부모 양육 코칭</option>
+            <option value="성인 1:1 개별 상담">성인 1:1 개별 상담</option>
+            <option value="성격 및 기질 검사 (TCI)">성격 및 기질 검사 (TCI)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="clientMsg">문의사항</label>
+          <textarea id="clientMsg" rows="3" placeholder="편하게 남겨주세요."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">비밀보장 예약 신청하기</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><span id="toastMsg"></span></div>
+  <script src="script.js"></script>
+</body>
+</html>

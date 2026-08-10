@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상담 프로그램 | 온마루아동가족상담센터</title>
+  <meta name="description" content="온마루아동가족상담센터 전문 프로그램. 아동 놀이치료, 부부 가족 대화 클리닉, 부모 양육 코칭, 성인 심리상담, TCI 기질검사">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
+        <div class="logo-text">
+          <span class="brand-name">온마루</span>
+          <span class="brand-sub">아동가족상담센터</span>
+        </div>
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">홈</a>
+        <a href="about.html" class="nav-link">센터 소개</a>
+        <a href="programs.html" class="nav-link active">상담 프로그램</a>
+        <a href="counselors.html" class="nav-link">전문가 소개</a>
+        <a href="mindcheck.html" class="nav-link highlight-link">🌱 셀프 마음체크</a>
+        <a href="location.html" class="nav-link">오시는 길 & 예약</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" onclick="location.href='mindcheck.html'">
+          <i class="fa-solid fa-heart-pulse"></i> 자가진단
+        </button>
+        <button class="btn btn-primary" onclick="openReservationModal()">
+          <i class="fa-regular fa-calendar-check"></i> 간편 예약 문의
+        </button>
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub Header Banner -->
+  <section class="sub-banner">
+    <div class="container text-center">
+      <span class="section-sub">OUR CLINICAL SERVICES</span>
+      <h1 class="page-title">온마루 상담 프로그램</h1>
+      <p class="page-desc">아동, 청소년, 부부, 성인을 위한 1:1 맞춤형 심리 솔루션</p>
+    </div>
+  </section>
+
+  <!-- Programs Filter Section -->
+  <section class="programs-section">
+    <div class="container">
+      <!-- Filter Tabs -->
+      <div class="tab-menu">
+        <button class="tab-btn active" onclick="filterPrograms('all', this)">전체보기</button>
+        <button class="tab-btn" onclick="filterPrograms('child', this)">아동 · 청소년</button>
+        <button class="tab-btn" onclick="filterPrograms('family', this)">부부 · 가족</button>
+        <button class="tab-btn" onclick="filterPrograms('adult', this)">성인 심리상담</button>
+        <button class="tab-btn" onclick="filterPrograms('tci', this)">기질 검사 (TCI)</button>
+      </div>
+
+      <div class="programs-grid grid-3">
+        <!-- Program 1 -->
+        <div class="program-card" data-category="child">
+          <div class="prog-badge">추천</div>
+          <div class="prog-icon"><i class="fa-solid fa-icons"></i></div>
+          <h3>아동·청소년 놀이 & 미술 치료</h3>
+          <p class="prog-desc">산만함, 또래관계 상처, 분리불안, 자존감 저하로 고민하는 아동을 위해 놀이와 미술로 마음을 치유합니다.</p>
+          <ul class="prog-features">
+            <li><i class="fa-solid fa-check"></i> 회당 50분 (상담 40분 + 부모 면담 10분)</li>
+            <li><i class="fa-solid fa-check"></i> 감정 조절 및 행동 치료 병행</li>
+          </ul>
+          <button class="btn btn-primary card-btn" onclick="openReservationModal('아동·청소년 놀이 & 미술 치료')">상담 신청하기</button>
+        </div>
+
+        <!-- Program 2 -->
+        <div class="program-card" data-category="family">
+          <div class="prog-badge badge-accent">인기</div>
+          <div class="prog-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h3>부부 & 커플/가족 대화 클리닉</h3>
+          <p class="prog-desc">반복되는 말다툼과 대화의 단절, 신뢰 문제를 감정 중심 부부치료(EFT) 기법으로 풀어냅니다.</p>
+          <ul class="prog-features">
+            <li><i class="fa-solid fa-check"></i> 회당 80분 깊이 있는 가족 대화 진행</li>
+            <li><i class="fa-solid fa-check"></i> 부부 성격 차이 및 상호 작용 분석</li>
+          </ul>
+          <button class="btn btn-primary card-btn" onclick="openReservationModal('부부 & 커플/가족 상담')">상담 신청하기</button>
+        </div>
+
+        <!-- Program 3 -->
+        <div class="program-card" data-category="child">
+          <div class="prog-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+          <h3>맞춤형 부모 양육 코칭</h3>
+          <p class="prog-desc">훈육이 어렵고 아이와의 마찰로 지친 부모님을 위해 아이의 기질에 맞는 구체적인 대화법을 코칭합니다.</p>
+          <ul class="prog-features">
+            <li><i class="fa-solid fa-check"></i> 부모-자녀 상호작용 관찰 평가</li>
+            <li><i class="fa-solid fa-check"></i> 가정 내 훈육 가이드 제공</li>
+          </ul>
+          <button class="btn btn-primary card-btn" onclick="openReservationModal('부모 양육 코칭')">코칭 신청하기</button>
+        </div>
+
+        <!-- Program 4 -->
+        <div class="program-card" data-category="adult">
+          <div class="prog-icon"><i class="fa-solid fa-user-nurse"></i></div>
+          <h3>성인 1:1 개별 상담</h3>
+          <p class="prog-desc">우울, 불안, 공황, 직장인 스트레스, 번아웃을 100% 비밀보장이 되는 안전한 환경에서 1:1 케어합니다.</p>
+          <ul class="prog-features">
+            <li><i class="fa-solid fa-check"></i> 회당 50분 개인 맞춤 진행</li>
+            <li><i class="fa-solid fa-check"></i> 인지행동치료 & 정서 수용 기법</li>
+          </ul>
+          <button class="btn btn-primary card-btn" onclick="openReservationModal('성인 1:1 개별 상담')">상담 신청하기</button>
+        </div>
+
+        <!-- Program 5 -->
+        <div class="program-card" data-category="tci">
+          <div class="prog-badge">검사</div>
+          <div class="prog-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>성격 및 기질 검사 (TCI)</h3>
+          <p class="prog-desc">타고난 기질과 후천적 성격을 분리 진단하여 부모와 자녀가 서로를 깊이 이해하는 성격 진단 프로그램입니다.</p>
+          <ul class="prog-features">
+            <li><i class="fa-solid fa-check"></i> 자녀 & 부모 통합 기질 분석</li>
+            <li><i class="fa-solid fa-check"></i> 1:1 심층 해석 상담 포함</li>
+          </ul>
+          <button class="btn btn-primary card-btn" onclick="openReservationModal('성격 및 기질 검사 (TCI)')">검사 신청하기</button>
+        </div>
+
+        <!-- Program 6 -->
+        <div class="program-card" data-category="adult">
+          <div class="prog-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h3>트라우마 & 정서 통합 치유</h3>
+          <p class="prog-desc">과거의 상처, 사고, 이별 등으로 인한 마음의 신체 반응과 감정적 괴로움을 안전하게 회복합니다.</p>
+          <ul class="prog-features">
+            <li><i class="fa-solid fa-check"></i> 정서적 안정화 기법</li>
+            <li><i class="fa-solid fa-check"></i> 신체 감각 기반 치유 프로그램</li>
+          </ul>
+          <button class="btn btn-primary card-btn" onclick="openReservationModal('트라우마 치유')">상담 신청하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
+          <span class="brand-name">온마루아동가족상담센터</span>
+        </div>
+        <p>상호명: 온마루아동가족상담센터 | 대표자: 김서연 | 사업자등록번호: 124-82-90123</p>
+        <p>주소: 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호 | 전화: 02-588-7588</p>
+        <p class="copyright">© 2026 온마루아동가족상담센터 All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reservation Modal -->
+  <div class="modal-backdrop" id="reserveModal">
+    <div class="modal-box glass-card">
+      <button class="modal-close" onclick="closeReservationModal()">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge"><i class="fa-solid fa-lock"></i> 100% 비밀보장 안심 예약</span>
+        <h2>온마루 상담 예약 문의</h2>
+        <p>연락처와 간단한 내용만 남겨주시면 친절히 안내해 드립니다.</p>
+      </div>
+
+      <form id="reserveForm" onsubmit="handleReserveSubmit(event)">
+        <div class="form-group">
+          <label for="clientName">성함 (또는 보호자 성함)</label>
+          <input type="text" id="clientName" placeholder="예: 김OO / 민준이 엄마" required>
+        </div>
+
+        <div class="form-group">
+          <label for="clientPhone">연락처</label>
+          <input type="tel" id="clientPhone" placeholder="010-0000-0000" required>
+        </div>
+
+        <div class="form-group">
+          <label for="progSelect">희망 상담 프로그램</label>
+          <select id="progSelect" required>
+            <option value="아동·청소년 놀이 & 미술 치료">아동·청소년 놀이 & 미술 치료</option>
+            <option value="부부 & 커플/가족 상담">부부 & 커플/가족 상담</option>
+            <option value="부모 양육 코칭">부모 양육 코칭</option>
+            <option value="성인 1:1 개별 상담">성인 1:1 개별 상담</option>
+            <option value="성격 및 기질 검사 (TCI)">성격 및 기질 검사 (TCI)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="clientMsg">문의사항</label>
+          <textarea id="clientMsg" rows="3" placeholder="편하게 남겨주세요."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">비밀보장 예약 신청하기</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><span id="toastMsg"></span></div>
+  <script src="script.js"></script>
+</body>
+</html>
