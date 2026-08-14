@@ -22,11 +22,7 @@
   <header class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
-        <div class="logo-text">
-          <span class="brand-name">온마루</span>
-          <span class="brand-sub">아동가족상담센터</span>
-        </div>
+        <img src="images/logo.jpg" alt="온마루아동가족상담센터" class="nav-logo-img">
       </a>
       
       <nav class="nav-menu" id="navMenu">
@@ -35,6 +31,7 @@
         <a href="programs.html" class="nav-link">상담 프로그램</a>
         <a href="counselors.html" class="nav-link">전문가 소개</a>
         <a href="mindcheck.html" class="nav-link highlight-link">🌱 셀프 마음체크</a>
+        <a href="board.html" class="nav-link">게시판</a>
         <a href="location.html" class="nav-link">오시는 길 & 예약</a>
       </nav>
 
@@ -198,11 +195,10 @@
     <div class="container footer-container">
       <div class="footer-brand">
         <div class="logo">
-          <span class="logo-icon"><i class="fa-solid fa-house-chimney-window"></i></span>
-          <span class="brand-name">온마루아동가족상담센터</span>
+          <img src="images/logo.jpg" alt="온마루아동가족상담센터" style="height: 40px; width: auto;">
         </div>
-        <p>상호명: 온마루아동가족상담센터 | 대표자: 노진숙 | 사업자등록번호: 124-82-90123</p>
-        <p>주소: 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호 | 전화: 02-588-7588</p>
+        <p>상호명: 온마루아동가족상담센터 | 대표자: 노진숙 | 사업자등록번호: 116-94-07568</p>
+        <p>주소: 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호 | 전화: 051-791-1203</p>
         <p class="copyright">© 2026 온마루아동가족상담센터 All Rights Reserved. 100% 비밀보장 윤리강령 준수</p>
       </div>
     </div>
@@ -262,6 +258,109 @@
     <i class="fa-solid fa-circle-check"></i> <span id="toastMsg">접수되었습니다</span>
   </div>
 
+  <!-- Welcome Popup -->
+  <div class="popup-overlay" id="welcomePopup">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup()" aria-label="팝업 닫기">&times;</button>
+      
+      <div class="popup-ribbon">
+        <i class="fa-solid fa-clipboard-list"></i> 심리검사 안내
+      </div>
+
+      <div class="popup-content">
+        <div class="popup-icon-wrap">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <h2 class="popup-title">온마루 심리검사 안내 🧠</h2>
+        <p class="popup-desc">
+          나와 아이의 마음을 이해하는 첫걸음,<br>
+          <strong>전문 심리검사를 통해 시작해 보세요.</strong>
+        </p>
+
+        <div class="popup-info-box" style="text-align: left;">
+          <div class="popup-info-row">
+            <i class="fa-solid fa-1" style="width:22px;height:22px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;"></i>
+            <span><strong>아동 + 부모 기질검사</strong></span>
+          </div>
+          <div class="popup-info-row">
+            <i class="fa-solid fa-2" style="width:22px;height:22px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;"></i>
+            <span><strong>부모양육태도 및 스트레스 검사</strong></span>
+          </div>
+          <div class="popup-info-row">
+            <i class="fa-solid fa-3" style="width:22px;height:22px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;"></i>
+            <span><strong>MBTI · TCI 성격검사</strong></span>
+          </div>
+        </div>
+
+        <p style="font-size:0.88rem;color:var(--text-dark);margin-bottom:8px;background:var(--bg-secondary);padding:10px 14px;border-radius:8px;border-left:3px solid var(--primary);">
+          <strong>💰 검사비(검사+상담=1시간)</strong>는 센터에 문의 바랍니다.
+        </p>
+
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:20px;">
+          검사 예약 및 문의는 전화 또는 카카오톡으로 연락주세요
+        </p>
+
+        <div class="popup-buttons">
+          <a href="tel:01071829146" class="popup-btn popup-btn-phone">
+            <i class="fa-solid fa-phone"></i> 전화 문의
+          </a>
+          <a href="https://open.kakao.com/o/sEYOFMIi" target="_blank" class="popup-btn popup-btn-kakao">
+            <i class="fa-solid fa-comment"></i> 카톡 문의
+          </a>
+        </div>
+      </div>
+
+      <div class="popup-footer">
+        <label class="popup-today-check">
+          <input type="checkbox" id="popupTodayHide">
+          <span>오늘 하루 보지 않기</span>
+        </label>
+        <button class="popup-footer-close" onclick="closePopup()">닫기</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script>
+    // Popup Logic
+    (function() {
+      const POPUP_KEY = 'onmaru_popup_hide_until';
+      const popup = document.getElementById('welcomePopup');
+      
+      // Check if popup should be hidden
+      const hideUntil = localStorage.getItem(POPUP_KEY);
+      if (hideUntil && new Date().getTime() < parseInt(hideUntil)) {
+        return; // Don't show popup
+      }
+
+      // Show popup with slight delay for smooth entrance
+      setTimeout(function() {
+        if (popup) popup.classList.add('active');
+      }, 800);
+    })();
+
+    function closePopup() {
+      const popup = document.getElementById('welcomePopup');
+      const todayCheck = document.getElementById('popupTodayHide');
+      
+      if (todayCheck && todayCheck.checked) {
+        // Set to hide for 24 hours
+        const tomorrow = new Date().getTime() + (24 * 60 * 60 * 1000);
+        localStorage.setItem('onmaru_popup_hide_until', tomorrow.toString());
+      }
+      
+      if (popup) {
+        popup.classList.add('closing');
+        setTimeout(function() {
+          popup.classList.remove('active', 'closing');
+        }, 300);
+      }
+    }
+
+    // Close on overlay click
+    document.getElementById('welcomePopup')?.addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+  </script>
 </body>
 </html>

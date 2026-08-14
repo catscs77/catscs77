@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시판 | 온마루아동가족상담센터</title>
+  <meta name="description" content="온마루아동가족상담센터 커뮤니티 게시판. 양육 고민, 상담 후기, 센터 공지사항을 자유롭게 나누는 소통 공간">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="온마루아동가족상담센터" class="nav-logo-img">
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">홈</a>
+        <a href="about.html" class="nav-link">센터 소개</a>
+        <a href="programs.html" class="nav-link">상담 프로그램</a>
+        <a href="counselors.html" class="nav-link">전문가 소개</a>
+        <a href="mindcheck.html" class="nav-link highlight-link">🌱 셀프 마음체크</a>
+        <a href="board.html" class="nav-link active">게시판</a>
+        <a href="location.html" class="nav-link">오시는 길 & 예약</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" onclick="location.href='mindcheck.html'">
+          <i class="fa-solid fa-heart-pulse"></i> 자가진단
+        </button>
+        <button class="btn btn-primary" onclick="openReservationModal()">
+          <i class="fa-regular fa-calendar-check"></i> 간편 예약 문의
+        </button>
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub Header Banner -->
+  <section class="sub-banner">
+    <div class="container text-center">
+      <span class="section-sub">COMMUNITY</span>
+      <h1 class="page-title">온마루 게시판</h1>
+      <p class="page-desc">양육 고민, 상담 후기, 센터 공지사항을 자유롭게 나누는 소통 공간</p>
+    </div>
+  </section>
+
+  <!-- Board Section -->
+  <section class="board-section">
+    <div class="container">
+
+      <!-- Category Tabs -->
+      <div class="tab-menu">
+        <button class="tab-btn active" onclick="filterBoard('all', this)">전체</button>
+        <button class="tab-btn" onclick="filterBoard('notice', this)">📌 공지사항</button>
+        <button class="tab-btn" onclick="filterBoard('parenting', this)">👶 양육 이야기</button>
+        <button class="tab-btn" onclick="filterBoard('review', this)">💚 상담 후기</button>
+        <button class="tab-btn" onclick="filterBoard('free', this)">💬 자유 글</button>
+      </div>
+
+      <!-- Write Button -->
+      <div class="board-toolbar">
+        <span class="board-count" id="boardCount">총 0개의 글</span>
+        <button class="btn btn-primary" onclick="openWriteModal()">
+          <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+        </button>
+      </div>
+
+      <!-- Post List -->
+      <div class="board-list" id="boardList">
+        <!-- Posts will be rendered by JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="board-empty" id="boardEmpty" style="display: none;">
+        <div class="empty-icon"><i class="fa-regular fa-comment-dots"></i></div>
+        <h3>아직 등록된 글이 없습니다</h3>
+        <p>첫 번째 이야기를 남겨주세요. 여러분의 따뜻한 글이 다른 분들에게 큰 힘이 됩니다.</p>
+        <button class="btn btn-primary" onclick="openWriteModal()">
+          <i class="fa-solid fa-pen-to-square"></i> 첫 글 작성하기
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Write Modal -->
+  <div class="modal-backdrop" id="writeModal">
+    <div class="modal-box glass-card" style="max-width: 640px;">
+      <button class="modal-close" onclick="closeWriteModal()">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge"><i class="fa-solid fa-pen-fancy"></i> 새 글 작성</span>
+        <h2>이야기를 남겨주세요</h2>
+        <p>양육 고민, 상담 후기, 격려의 한마디를 자유롭게 나눠보세요.</p>
+      </div>
+
+      <form id="writeForm" onsubmit="handleWriteSubmit(event)">
+        <div class="form-group">
+          <label for="postCategory">카테고리</label>
+          <select id="postCategory" required>
+            <option value="parenting">👶 양육 이야기</option>
+            <option value="review">💚 상담 후기</option>
+            <option value="free">💬 자유 글</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="postAuthor">작성자 (닉네임 가능)</label>
+          <input type="text" id="postAuthor" placeholder="예: 민준이 엄마 / 익명" required>
+        </div>
+
+        <div class="form-group">
+          <label for="postTitle">제목</label>
+          <input type="text" id="postTitle" placeholder="글 제목을 입력해 주세요" required>
+        </div>
+
+        <div class="form-group">
+          <label for="postContent">내용</label>
+          <textarea id="postContent" rows="8" placeholder="자유롭게 작성해 주세요. 여러분의 이야기가 다른 분들에게 큰 위로가 됩니다." required></textarea>
+        </div>
+
+        <div class="form-privacy">
+          <input type="checkbox" id="boardPrivacy" required checked>
+          <label for="boardPrivacy">개인정보 비공개 동의 (작성자명은 닉네임으로 표시됩니다)</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-paper-plane"></i> 글 등록하기
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Post Detail Modal -->
+  <div class="modal-backdrop" id="postDetailModal">
+    <div class="modal-box glass-card" style="max-width: 680px;">
+      <button class="modal-close" onclick="closePostDetail()">&times;</button>
+      <div id="postDetailContent">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservation Modal -->
+  <div class="modal-backdrop" id="reserveModal">
+    <div class="modal-box glass-card">
+      <button class="modal-close" onclick="closeReservationModal()">&times;</button>
+      <div class="modal-header">
+        <span class="modal-badge"><i class="fa-solid fa-lock"></i> 100% 비밀보장 안심 예약</span>
+        <h2>온마루 상담 예약 문의</h2>
+        <p>연락처와 간단한 내용만 남겨주시면 친절히 안내해 드립니다.</p>
+      </div>
+
+      <form id="reserveForm" onsubmit="handleReserveSubmit(event)">
+        <div class="form-group">
+          <label for="clientName">성함 (또는 보호자 성함)</label>
+          <input type="text" id="clientName" placeholder="예: 김OO / 민준이 엄마" required>
+        </div>
+        <div class="form-group">
+          <label for="clientPhone">연락처</label>
+          <input type="tel" id="clientPhone" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="progSelect">희망 상담 프로그램</label>
+          <select id="progSelect" required>
+            <option value="아동·청소년 놀이 & 미술 치료">아동·청소년 놀이 & 미술 치료</option>
+            <option value="부부 & 커플/가족 상담">부부 & 커플/가족 상담</option>
+            <option value="부모 양육 코칭">부모 양육 코칭</option>
+            <option value="성인 1:1 개별 상담">성인 1:1 개별 상담</option>
+            <option value="성격 및 기질 검사 (TCI)">성격 및 기질 검사 (TCI)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="clientMsg">문의사항</label>
+          <textarea id="clientMsg" rows="3" placeholder="편하게 남겨주세요."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">비밀보장 예약 신청하기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="온마루아동가족상담센터" style="height: 40px; width: auto;">
+        </div>
+        <p>상호명: 온마루아동가족상담센터 | 대표자: 노진숙 | 사업자등록번호: 116-94-07568</p>
+        <p>주소: 부산시 강서구 명지국제2로 28번길 3 동건프라자 802호 | 전화: 051-791-1203</p>
+        <p class="copyright">© 2026 온마루아동가족상담센터 All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><span id="toastMsg"></span></div>
+  <script src="script.js"></script>
+  <script src="board.js"></script>
+</body>
+</html>

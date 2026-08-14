@@ -40,10 +40,60 @@ function closeReservationModal() {
 function handleReserveSubmit(e) {
   e.preventDefault();
   closeReservationModal();
-  showToast("🌿 상담 예약 문의가 100% 비밀보장으로 접수되었습니다. 담당자가 곧 연락드리겠습니다.");
   
   const form = e.target;
   if (form) form.reset();
+  
+  // Show contact options modal
+  showContactModal();
+}
+
+// Show Contact Options (Phone / KakaoTalk)
+function showContactModal() {
+  // Create modal if not exists
+  let modal = document.getElementById('contactModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.className = 'modal-backdrop';
+    modal.id = 'contactModal';
+    modal.innerHTML = `
+      <div class="modal-box glass-card" style="max-width: 480px;">
+        <button class="modal-close" onclick="closeContactModal()">&times;</button>
+        <div class="modal-header" style="text-align: center;">
+          <div style="width:64px;height:64px;background:linear-gradient(135deg,#4CAF50,#81C784);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.5rem;color:#fff;">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h2 style="margin-bottom:8px;">상담 신청이 접수되었습니다 🌿</h2>
+          <p style="color:var(--text-muted);font-size:0.95rem;">아래 방법으로 바로 상담 연결이 가능합니다</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px;">
+          <a href="tel:01071829146" class="btn btn-primary btn-block" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;font-size:1.05rem;">
+            <i class="fa-solid fa-phone"></i> 전화 상담 연결 (010-7182-9146)
+          </a>
+          <a href="https://open.kakao.com/o/sEYOFMIi" target="_blank" class="btn btn-block" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;font-size:1.05rem;background:#FEE500;color:#3C1E1E;border:none;border-radius:var(--radius-sm);font-weight:600;cursor:pointer;transition:var(--transition);">
+            <i class="fa-solid fa-comment"></i> 카카오톡 상담 연결
+          </a>
+        </div>
+        <p style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin-top:20px;">
+          <i class="fa-solid fa-lock" style="margin-right:4px;"></i> 모든 상담 내용은 100% 비밀보장됩니다
+        </p>
+      </div>
+    `;
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeContactModal();
+    });
+    document.body.appendChild(modal);
+  }
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeContactModal() {
+  const modal = document.getElementById('contactModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 }
 
 // Quiz Functions
