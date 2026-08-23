@@ -36,21 +36,59 @@ function closeReservationModal() {
   }
 }
 
-// Handle Form Submit
+// Handle Form Submit (EmailJS + Contact Modal)
 function handleReserveSubmit(e) {
   e.preventDefault();
-  closeReservationModal();
   
   const form = e.target;
+  const formData = {
+    client_name: document.getElementById('clientName')?.value || '',
+    client_phone: document.getElementById('clientPhone')?.value || '',
+    program: document.getElementById('progSelect')?.value || '',
+    message: document.getElementById('clientMsg')?.value || '',
+    submit_date: new Date().toLocaleString('ko-KR')
+  };
+
+  closeReservationModal();
+
+  // EmailJS로 이메일 알림 전송
+  if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+    emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, formData)
+      .then(function() {
+        console.log('📧 이메일 알림 전송 성공');
+      })
+      .catch(function(error) {
+        console.log('이메일 전송 실패:', error);
+      });
+  }
+
   if (form) form.reset();
   
   // Show contact options modal
   showContactModal();
 }
 
+// ============================================================
+// EmailJS 설정 (아래 값을 본인 계정 정보로 변경하세요)
+// EmailJS 가입: https://www.emailjs.com
+// ============================================================
+const EMAILJS_CONFIG = {
+  publicKey: 'YOUR_PUBLIC_KEY',      // EmailJS > Account > Public Key
+  serviceId: 'YOUR_SERVICE_ID',      // EmailJS > Email Services > Service ID
+  templateId: 'YOUR_TEMPLATE_ID'     // EmailJS > Email Templates > Template ID
+};
+
+// EmailJS 초기화
+function initEmailJS() {
+  if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+    console.log('✅ EmailJS 초기화 완료');
+  }
+}
+document.addEventListener('DOMContentLoaded', initEmailJS);
+
 // Show Contact Options (Phone / KakaoTalk)
 function showContactModal() {
-  // Create modal if not exists
   let modal = document.getElementById('contactModal');
   if (!modal) {
     modal = document.createElement('div');
@@ -67,11 +105,11 @@ function showContactModal() {
           <p style="color:var(--text-muted);font-size:0.95rem;">아래 방법으로 바로 상담 연결이 가능합니다</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px;">
+          <a href="https://open.kakao.com/o/sEYOFMIi" target="_blank" class="btn btn-block" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;font-size:1.08rem;background:#FEE500;color:#3C1E1E;border:none;border-radius:var(--radius-sm);font-weight:700;cursor:pointer;transition:var(--transition);">
+            <i class="fa-solid fa-comment"></i> 카카오톡으로 바로 상담하기
+          </a>
           <a href="tel:01071829146" class="btn btn-primary btn-block" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;font-size:1.05rem;">
             <i class="fa-solid fa-phone"></i> 전화 상담 연결 (010-7182-9146)
-          </a>
-          <a href="https://open.kakao.com/o/sEYOFMIi" target="_blank" class="btn btn-block" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;font-size:1.05rem;background:#FEE500;color:#3C1E1E;border:none;border-radius:var(--radius-sm);font-weight:600;cursor:pointer;transition:var(--transition);">
-            <i class="fa-solid fa-comment"></i> 카카오톡 상담 연결
           </a>
         </div>
         <p style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin-top:20px;">
