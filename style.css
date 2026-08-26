@@ -614,8 +614,7 @@ h1, h2, h3, .brand-name, .page-title {
 }
 
 .cat-notice { background-color: var(--accent); color: #FFFFFF; }
-.cat-parenting { background-color: #E8F5E9; color: #2E7D32; }
-.cat-review { background-color: var(--primary-light); color: var(--primary); }
+.cat-counsel { background-color: #E8EAF6; color: #283593; }
 .cat-free { background-color: #E3F2FD; color: #1565C0; }
 
 .board-title {

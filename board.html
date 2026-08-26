@@ -32,9 +32,9 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="btn btn-outline" onclick="location.href='mindcheck.html'">
-          <i class="fa-solid fa-heart-pulse"></i> 자가진단
-        </button>
+        <a href="tel:0517911203" class="btn btn-outline">
+          <i class="fa-solid fa-phone"></i> 예약전화안내 051-791-1203
+        </a>
         <button class="btn btn-primary" onclick="openReservationModal()">
           <i class="fa-regular fa-calendar-check"></i> 간편 예약 문의
         </button>
@@ -62,8 +62,7 @@
       <div class="tab-menu">
         <button class="tab-btn active" onclick="filterBoard('all', this)">전체</button>
         <button class="tab-btn" onclick="filterBoard('notice', this)">📌 공지사항</button>
-        <button class="tab-btn" onclick="filterBoard('parenting', this)">👶 양육 이야기</button>
-        <button class="tab-btn" onclick="filterBoard('review', this)">💚 상담 후기</button>
+        <button class="tab-btn" onclick="filterBoard('counsel', this)">🔒 상담 신청</button>
         <button class="tab-btn" onclick="filterBoard('free', this)">💬 자유 글</button>
       </div>
 
@@ -71,7 +70,7 @@
       <div class="board-toolbar">
         <span class="board-count" id="boardCount">총 0개의 글</span>
         <button class="btn btn-primary" onclick="openWriteModal()">
-          <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+          <i class="fa-solid fa-pen-to-square"></i> 상담 신청하기
         </button>
       </div>
 
@@ -84,9 +83,9 @@
       <div class="board-empty" id="boardEmpty" style="display: none;">
         <div class="empty-icon"><i class="fa-regular fa-comment-dots"></i></div>
         <h3>아직 등록된 글이 없습니다</h3>
-        <p>첫 번째 이야기를 남겨주세요. 여러분의 따뜻한 글이 다른 분들에게 큰 힘이 됩니다.</p>
+        <p>익명으로 편하게 상담을 신청해 주세요. 모든 내용은 비밀보장됩니다.</p>
         <button class="btn btn-primary" onclick="openWriteModal()">
-          <i class="fa-solid fa-pen-to-square"></i> 첫 글 작성하기
+          <i class="fa-solid fa-pen-to-square"></i> 상담 신청하기
         </button>
       </div>
     </div>
@@ -97,43 +96,42 @@
     <div class="modal-box glass-card" style="max-width: 640px;">
       <button class="modal-close" onclick="closeWriteModal()">&times;</button>
       <div class="modal-header">
-        <span class="modal-badge"><i class="fa-solid fa-pen-fancy"></i> 새 글 작성</span>
-        <h2>이야기를 남겨주세요</h2>
-        <p>양육 고민, 상담 후기, 격려의 한마디를 자유롭게 나눠보세요.</p>
+        <span class="modal-badge"><i class="fa-solid fa-lock"></i> 100% 비밀보장</span>
+        <h2>익명 상담 신청</h2>
+        <p>이름 없이 편하게 상담을 신청하실 수 있습니다. 모든 내용은 비밀보장됩니다.</p>
       </div>
 
       <form id="writeForm" onsubmit="handleWriteSubmit(event)">
         <div class="form-group">
           <label for="postCategory">카테고리</label>
           <select id="postCategory" required>
-            <option value="parenting">👶 양육 이야기</option>
-            <option value="review">💚 상담 후기</option>
+            <option value="counsel">🔒 상담 신청</option>
             <option value="free">💬 자유 글</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="postAuthor">작성자 (닉네임 가능)</label>
-          <input type="text" id="postAuthor" placeholder="예: 민준이 엄마 / 익명" required>
+          <label for="postAuthor">작성자 (닉네임 또는 익명)</label>
+          <input type="text" id="postAuthor" placeholder="익명" value="익명">
         </div>
 
         <div class="form-group">
           <label for="postTitle">제목</label>
-          <input type="text" id="postTitle" placeholder="글 제목을 입력해 주세요" required>
+          <input type="text" id="postTitle" placeholder="예: 아이 분리불안 상담 문의" required>
         </div>
 
         <div class="form-group">
-          <label for="postContent">내용</label>
-          <textarea id="postContent" rows="8" placeholder="자유롭게 작성해 주세요. 여러분의 이야기가 다른 분들에게 큰 위로가 됩니다." required></textarea>
+          <label for="postContent">상담 내용</label>
+          <textarea id="postContent" rows="8" placeholder="고민이나 상담받고 싶은 내용을 편하게 적어주세요.&#10;&#10;예) 아이 나이, 증상, 고민 내용 등" required></textarea>
         </div>
 
         <div class="form-privacy">
           <input type="checkbox" id="boardPrivacy" required checked>
-          <label for="boardPrivacy">개인정보 비공개 동의 (작성자명은 닉네임으로 표시됩니다)</label>
+          <label for="boardPrivacy">개인정보 비공개 동의 (작성자명은 익명으로 표시됩니다)</label>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">
-          <i class="fa-solid fa-paper-plane"></i> 글 등록하기
+          <i class="fa-solid fa-paper-plane"></i> 상담 신청하기
         </button>
       </form>
     </div>

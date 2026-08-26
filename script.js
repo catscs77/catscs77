@@ -5,26 +5,9 @@
 // Quiz State
 let quizAnswers = { step1: null, step2: null, step3: null };
 
-// Open Reservation Modal
+// Open Reservation - 카카오톡 오픈채팅으로 바로 연결
 function openReservationModal(programName) {
-  const modal = document.getElementById('reserveModal');
-  const progSelect = document.getElementById('progSelect');
-  
-  if (programName && progSelect) {
-    for (let i = 0; i < progSelect.options.length; i++) {
-      if (progSelect.options[i].value.includes(programName) || programName.includes(progSelect.options[i].value)) {
-        progSelect.selectedIndex = i;
-        break;
-      }
-    }
-  }
-
-  if (modal) {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  } else {
-    location.href = 'location.html';
-  }
+  window.open('https://open.kakao.com/o/sEYOFMIi', '_blank');
 }
 
 // Close Reservation Modal
