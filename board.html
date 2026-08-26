@@ -69,9 +69,14 @@
       <!-- Write Button -->
       <div class="board-toolbar">
         <span class="board-count" id="boardCount">총 0개의 글</span>
-        <button class="btn btn-primary" onclick="openWriteModal()">
-          <i class="fa-solid fa-pen-to-square"></i> 상담 신청하기
-        </button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn-admin" id="adminToggleBtn" onclick="toggleAdmin()">
+            <i class="fa-solid fa-lock"></i> 관리자
+          </button>
+          <button class="btn btn-primary" onclick="openWriteModal()">
+            <i class="fa-solid fa-pen-to-square"></i> 상담 신청하기
+          </button>
+        </div>
       </div>
 
       <!-- Post List -->

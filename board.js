@@ -87,7 +87,8 @@ function renderBoard() {
           <span><i class="fa-regular fa-eye"></i> ${post.views}</span>
         </div>
       </div>
-      <div class="board-item-right">
+      <div class="board-item-right" style="display:flex;align-items:center;gap:12px;">
+        ${isAdminMode ? `<button class="btn-admin-delete" onclick="event.stopPropagation(); deletePost(${post.id})" title="삭제"><i class="fa-solid fa-trash-can"></i></button>` : ''}
         <i class="fa-solid fa-chevron-right"></i>
       </div>
     </div>
@@ -177,9 +178,10 @@ function openPostDetail(postId) {
         </div>
         <hr style="border: none; border-top: 1px solid var(--border-color); margin: 20px 0;">
         <div class="post-detail-body">${escapeHtml(post.content).replace(/\n/g, '<br>')}</div>
-        <div style="margin-top: 32px; display: flex; gap: 12px; justify-content: center;">
+        <div style="margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
           <button class="btn btn-outline" onclick="closePostDetail()"><i class="fa-solid fa-arrow-left"></i> 목록으로</button>
           <button class="btn btn-primary" onclick="closePostDetail(); openReservationModal()"><i class="fa-regular fa-calendar-check"></i> 상담 예약하기</button>
+          ${isAdminMode ? `<button class="btn btn-outline" style="color:#e53935;border-color:#e53935;" onclick="deletePost(${post.id}); closePostDetail()"><i class="fa-solid fa-trash-can"></i> 삭제</button>` : ''}
         </div>
       </div>
     `;
@@ -212,6 +214,65 @@ document.addEventListener('click', function(e) {
   if (e.target.id === 'writeModal') closeWriteModal();
   if (e.target.id === 'postDetailModal') closePostDetail();
 });
+
+// ============================================================
+// Admin Mode (관리자 모드)
+// ============================================================
+const ADMIN_PASSWORD = 'onmaru2026';  // ← 원하시는 비밀번호로 변경하세요
+let isAdminMode = false;
+
+function toggleAdmin() {
+  if (isAdminMode) {
+    // 로그아웃
+    isAdminMode = false;
+    updateAdminUI();
+    renderBoard();
+    if (typeof showToast === 'function') {
+      showToast('🔓 관리자 모드가 해제되었습니다.');
+    }
+  } else {
+    // 로그인 비밀번호 입력
+    const pw = prompt('🔐 관리자 비밀번호를 입력하세요:');
+    if (pw === ADMIN_PASSWORD) {
+      isAdminMode = true;
+      updateAdminUI();
+      renderBoard();
+      if (typeof showToast === 'function') {
+        showToast('🔒 관리자 모드가 활성화되었습니다. 글을 삭제할 수 있습니다.');
+      }
+    } else if (pw !== null) {
+      alert('비밀번호가 올바르지 않습니다.');
+    }
+  }
+}
+
+function updateAdminUI() {
+  const adminBtn = document.getElementById('adminToggleBtn');
+  if (adminBtn) {
+    if (isAdminMode) {
+      adminBtn.innerHTML = '<i class="fa-solid fa-lock-open"></i> 관리자 해제';
+      adminBtn.classList.add('admin-active');
+    } else {
+      adminBtn.innerHTML = '<i class="fa-solid fa-lock"></i> 관리자';
+      adminBtn.classList.remove('admin-active');
+    }
+  }
+}
+
+function deletePost(postId) {
+  if (!isAdminMode) return;
+  
+  if (!confirm('이 글을 삭제하시겠습니까?')) return;
+  
+  let posts = getPosts();
+  posts = posts.filter(p => p.id !== postId);
+  savePosts(posts);
+  renderBoard();
+  
+  if (typeof showToast === 'function') {
+    showToast('🗑️ 글이 삭제되었습니다.');
+  }
+}
 
 // Initialize board on page load
 document.addEventListener('DOMContentLoaded', renderBoard);
