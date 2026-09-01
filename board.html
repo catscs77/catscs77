@@ -101,15 +101,16 @@
     <div class="modal-box glass-card" style="max-width: 640px;">
       <button class="modal-close" onclick="closeWriteModal()">&times;</button>
       <div class="modal-header">
-        <span class="modal-badge"><i class="fa-solid fa-lock"></i> 100% 비밀보장</span>
-        <h2>익명 상담 신청</h2>
-        <p>이름 없이 편하게 상담을 신청하실 수 있습니다. 모든 내용은 비밀보장됩니다.</p>
+        <span class="modal-badge"><i class="fa-solid fa-pen-fancy"></i> 글 작성</span>
+        <h2>글을 남겨주세요</h2>
+        <p>공지사항, 상담 신청, 자유 글을 작성하실 수 있습니다.</p>
       </div>
 
       <form id="writeForm" onsubmit="handleWriteSubmit(event)">
         <div class="form-group">
           <label for="postCategory">카테고리</label>
           <select id="postCategory" required>
+            <option value="notice">📌 공지사항</option>
             <option value="counsel">🔒 상담 신청</option>
             <option value="free">💬 자유 글</option>
           </select>
